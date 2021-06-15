@@ -15,7 +15,9 @@
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.9.1",
     "cross-env": "^7.0.3",
-    "nuxt": "^2.15.3"
+    "firebase": "^8.6.7",
+    "nuxt": "^2.15.3",
+    "vee-validate": "^2.0.6"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.0",

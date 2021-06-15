@@ -51,17 +51,12 @@
         </div>
       </div>
     </section>
-
-    <section class="section">
-      <h6 class="title is-6">Details</h6>
-      <hr size="1" />
-      <div class="content">
-        <p>Description..</p>
-      </div>
-    </section>
   </div>
 </template>
 
 <script>
 export default {}
 </script>
+
+<style lang="scss" scoped>
+</style>

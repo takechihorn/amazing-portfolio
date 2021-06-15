@@ -1,13 +1,15 @@
 <template>
   <div>
-    <section class="section left-right-pad is-fluid">
+    <!-- <section class="section left-right-pad is-fluid">
       <div class="hero is-medium is-primary is-bold has-text-centered">
         <div class="hero-body">
           <h1 class="title">Warm Welcome to the Nshop!</h1>
           <h2 class="subtitle">Toys and Gifts for the Geeky Ones!</h2>
+          <a class="button is-warning" @click="increment(10)">Increment +</a>
+          <a class="button is-danger">{{ counter }}</a>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section class="section">
       <div class="box">
@@ -28,6 +30,14 @@
               </p>
               <p class="control">
                 <a class="button is-primary"> Search </a>
+              </p>
+              <p class="control">
+                <a
+                  class="button is-warning"
+                  @click="$store.dispatch('fireTest')"
+                >
+                  Test Firebase</a
+                >
               </p>
             </div>
           </div>
@@ -190,5 +200,16 @@
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    counter() {
+      return this.$store.getters.counter
+    },
+  },
+  methods: {
+    increment(val) {
+      this.$store.dispatch('increment', val)
+    },
+  },
+}
 </script>
