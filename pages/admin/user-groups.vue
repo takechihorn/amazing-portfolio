@@ -69,7 +69,7 @@
                   }}</a>
                 </td>
                 <td>
-                  <a
+                  <a @click.prevent="removeGroup(group)"
                     ><span class="icon has-text-danger"
                       ><i class="fa fa-lg fa-times-circle"></i></span
                   ></a>
@@ -147,7 +147,21 @@ export default {
       this.group = null
       this.jobsDone()
     },
+    removeGroup(group) {
+      this.$swal({
+        title: 'Delete the group?',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      }).then((ok) => {
+        if (ok) {
+          // eslint-disable-next-line object-shorthand
+          this.$store.dispatch('admin/removeGroup', { group: group })
+        }
+      })
+    },
     jobsDone() {
+      this.group = null
       this.name = ''
       this.$nextTick(() => {
         this.removeErrors()
