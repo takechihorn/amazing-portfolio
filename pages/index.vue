@@ -32,12 +32,12 @@
                 <a class="button is-primary"> Search </a>
               </p>
               <p class="control">
-                <a
+                <!-- <a
                   class="button is-warning"
                   @click="$store.dispatch('fireTest')"
                 >
                   Test Firebase</a
-                >
+                > -->
               </p>
             </div>
           </div>

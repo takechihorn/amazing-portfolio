@@ -17,7 +17,10 @@
         <div id="top-menu" class="navbar-menu">
           <div class="navbar-start">
             <nuxt-link class="navbar-item" to="/"> Home </nuxt-link>
-            <div class="navbar-item has-dropdown is-hoverable">
+            <div
+              class="navbar-item has-dropdown is-hoverable"
+              v-if="userIsAdmin"
+            >
               <a class="navbar-link is-active" href="#"> Admin </a>
               <div class="navbar-dropdown">
                 <nuxt-link class="navbar-item" to="/admin/product-list">
@@ -38,8 +41,23 @@
             </div>
           </div>
 
-          <div class="navbar-end">
-            <div class="navbar-item">Hi, Guest</div>
+          <div class="navbar-start">
+            <div
+              class="navbar-item has-dropdown is-hoverable"
+              v-if="userLoggedIn"
+            >
+              <a class="navbar-link is-active"> Hi, {{ username }} </a>
+              <div class="navbar-dropdowm">
+                <nuxt-link class="navbar-item" to="/user-profile">
+                  Profile
+                </nuxt-link>
+                <nuxt-link class="navbar-item" to="/user-pwd-change"
+                  >Change Password</nuxt-link
+                >
+                <a class="navbar-item" @click="logOut"> Log Out </a>
+              </div>
+            </div>
+            <div class="navbar-item" v-else>Hi {{ username }}</div>
             <div class="navbar-item">
               <div class="field is-grouped is-grouped-multiline">
                 <p class="control">
@@ -50,26 +68,26 @@
                     <span>&bullet; 0 item ($0.00)</span>
                   </nuxt-link>
                 </p>
-
-                <p class="control">
-                  <nuxt-link class="button is-primary" to="/login">
-                    <span class="icon is-small">
-                      <i class="fa fa-unlock-alt"></i>
-                    </span>
-                    <span> Login </span>
-                  </nuxt-link>
-                </p>
-
-                <p class="control">
-                  <nuxt-link class="button is-info" to="/signup">
-                    <span class="icon is-small">
-                      <i class="fa fa-user-o"></i>
-                    </span>
-                    <span>Sign up</span>
-                  </nuxt-link>
-                </p>
               </div>
             </div>
+
+            <p class="control" v-if="!userLoggedIn">
+              <nuxt-link class="button is-primary" to="/login">
+                <span class="icon is-small">
+                  <i class="fa fa-unlock-alt"></i>
+                </span>
+                <span> Login </span>
+              </nuxt-link>
+            </p>
+
+            <p class="control" v-if="!userLoggedIn">
+              <nuxt-link class="button is-info" to="/signup">
+                <span class="icon is-small">
+                  <i class="fa fa-user-o"></i>
+                </span>
+                <span>Sign up</span>
+              </nuxt-link>
+            </p>
           </div>
         </div>
       </nav>
@@ -94,5 +112,42 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      username: 'Guest',
+    }
+  },
+  computed: {
+    userProfile() {
+      return this.$store.getters.user
+    },
+    userLoggedIn() {
+      return this.$store.getters.loginStatus
+    },
+    userIsAdmin() {
+      return this.$store.getters.userRole === 'admin'
+    },
+  },
+  watch: {
+    userProfile(value) {
+      if (value) {
+        this.username = value.name
+      } else {
+        this.username = 'Guest'
+      }
+    },
+  },
+  created() {
+    if (!this.userLoggedIn) {
+      this.$store.dispatch('setAuthStatus')
+    }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('logOut')
+      this.$router.push('/')
+    },
+  },
+}
 </script>

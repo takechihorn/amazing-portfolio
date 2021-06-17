@@ -61,8 +61,155 @@ export const actions = {
         return firebaseApp.database().ref(`users/${newUser.uid}`).set(userData)
       })
       .then(() => {
+        return firebaseApp
+          .database()
+          .ref('groups')
+          .orderByChild('name')
+          .equalTo('Customer')
+          .once('value')
+          .then((snapShot) => {
+            const groupKey = Object.keys(snapShot.val())[0]
+            const groupedUser = {}
+            groupedUser[newUser.uid] = payload.fullname
+            return firebaseApp
+              .database()
+              .ref(`userGroups/${groupKey}`)
+              .update(groupedUser)
+          })
+      })
+      .then(() => {
         commit('setJobDone', true)
         commit('setBusy', false)
+      })
+      .catch((error) => {
+        commit('setBusy', false)
+        commit('setError', error)
+      })
+  },
+  loginUser({ commit }, payload) {
+    commit('setBusy', true)
+    commit('clearError')
+    console.log('LOGIN')
+    // 1. Login user
+    // 2. Find the group user Belongs
+    // 3. Set Logged in user
+    firebaseApp
+      .auth()
+      .signInWithEmailAndPassword(payload.email, payload.password)
+      .then((result) => {
+        const authUser = {
+          id: result.user.uid,
+          email: result.user.email,
+          name: result.user.displayName,
+        }
+        console.log(authUser)
+        return firebaseApp
+          .database()
+          .ref('groups')
+          .orderByChild('name')
+          .equalTo('Administrator')
+          .once('value')
+          .then((snapShot) => {
+            const groupKey = Object.keys(snapShot.val())[0]
+            return firebaseApp
+              .database()
+              .ref(`userGroups/${groupKey}`)
+              .child(`${authUser.id}`)
+              .once('value')
+              .then((ugroupSnap) => {
+                if (ugroupSnap.exists()) {
+                  authUser.role = 'admin'
+                } else {
+                  authUser.role = 'customer'
+                }
+                commit('setUser', authUser)
+                commit('setBusy', false)
+                commit('setJobDone', true)
+              })
+          })
+      })
+      .catch((error) => {
+        commit('setBusy', false)
+        commit('setError', error)
+      })
+  },
+  logOut({ commit }) {
+    firebaseApp.auth().signOut()
+    commit('setUser', null)
+  },
+  setAuthStatus({ commit }) {
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const authUser = {
+          id: user.uid,
+          email: user.email,
+          name: user.displayName,
+        }
+        console.log('authUser')
+        firebaseApp
+          .database()
+          .ref('groups')
+          .orderByChild('name')
+          .equalTo('Administrator')
+          .once('value')
+          .then((snapShot) => {
+            const groupKey = Object.keys(snapShot.val())[0]
+            firebaseApp
+              .database()
+              .ref(`userGroups/${groupKey}`)
+              .child(`${authUser.id}`)
+              .once('value')
+              .then((uGroupSnap) => {
+                if (uGroupSnap.exists()) {
+                  authUser.role = 'admin'
+                } else {
+                  authUser.role = 'customer'
+                }
+                commit('setUser', authUser)
+              })
+          })
+      }
+    })
+  },
+  updateProfile({ commit, getters }, payload) {
+    // 1. Update user name with updateProfile
+    // 2. Update user email with update
+    // 3. Update the database
+    // 4. Will divide the code into chunks
+    // -McDrpk2MFfHhXrliMZX -McDrqkljZ7iruZ20J0D
+    commit('setBusy', true)
+    commit('clearError')
+    const userData = getters.user
+    const user = firebaseApp.auth().currentUser
+    const updateEmail = () => {
+      return user.updateEmail(payload.email)
+    }
+    const updateDb = () => {
+      const updateObj = {}
+      if (userData.role === 'admin') {
+        updateObj[`userGroups/-McDrpk2MFfHhXrliMZX/${user.uid}`] =
+          payload.fullname
+      }
+      updateObj[`userGroups/-McDrqkljZ7iruZ20J0D/${user.uid}`] =
+        payload.fullname
+      updateObj[`users/${user.uid}/email`] = payload.email
+      updateObj[`users/${user.uid}/fullname`] = payload.fullname
+      return firebaseApp.database().ref().update(updateObj)
+    }
+    user
+      .updateProfile({ displayName: payload.fullname })
+      .then(updateEmail)
+      .then(updateDb)
+      .then(() => {
+        const userObj = {
+          id: userData.id,
+          email: payload.email,
+          name: payload.fullname,
+          role: userData.role,
+        }
+        commit('setUser', userObj)
+        commit('setBusy', false)
+        commit('setJobDone', true)
       })
       .catch((error) => {
         commit('setBusy', false)
@@ -74,6 +221,13 @@ export const actions = {
 export const getters = {
   user(state) {
     return state.user
+  },
+  loginStatus(state) {
+    return state.user !== null && state.user !== undefined
+  },
+  userRole(state) {
+    const isLoggedIn = state.user !== null && state.user !== undefined
+    return isLoggedIn ? state.user.role : 'customer'
   },
   error(state) {
     return state.error

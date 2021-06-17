@@ -56,7 +56,7 @@
               </div>
             </div>
             <error-bar :error="error"></error-bar>
-            <div class="field">
+            <div clas s="field">
               <div class="control">
                 <button
                   class="button is-primary"
@@ -75,36 +75,19 @@
 </template>
 
 <script>
-import ErrorBar from '@/components/ErrorBar.vue'
+import ErrorBar from '@/components/ErrorBar'
+import apiJobMixin from '@/mixins/apiJobMixin'
 export default {
   components: {
     ErrorBar,
   },
+  mixins: [apiJobMixin],
   data() {
     return {
       fullname: '',
       email: '',
       password: '',
     }
-  },
-  computed: {
-    error() {
-      return this.$store.getters.error
-    },
-    busy() {
-      return this.$store.getters.busy
-    },
-    jobDone() {
-      return this.$store.getters.jobDone
-    },
-  },
-  watch: {
-    jobDone(value) {
-      if (value) {
-        this.$store.commit('setJobDone', false)
-        this.jobsDone()
-      }
-    },
   },
   methods: {
     onSignUp() {
@@ -120,13 +103,8 @@ export default {
       })
     },
     jobsDone() {
-      this.$nextTick(() => {
-        this.removeErrors()
-      })
-    },
-    removeErrors() {
-      this.$validator.reset()
-      this.$store.commit('clearError')
+      this.removeErrors()
+      this.$router.replace('/')
     },
   },
 }
