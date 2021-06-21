@@ -1,4 +1,4 @@
-import firebaseApp from '@/plugins/firebase'
+import { firebaseApp } from '@/plugins/firebase'
 
 export const state = () => ({
   user: null,
@@ -30,7 +30,7 @@ export const actions = {
     commit('setBusy', true)
     commit('clearError')
     // 1. Signup new user
-    // 2. Update firebase user profile & set Local user data
+    // 2. Update firebase user profile & set local user data
     // 3. Add user data into database
     // 4. Attach user to consumer group
     let newUser = null
@@ -89,10 +89,9 @@ export const actions = {
   loginUser({ commit }, payload) {
     commit('setBusy', true)
     commit('clearError')
-    console.log('LOGIN')
     // 1. Login user
-    // 2. Find the group user Belongs
-    // 3. Set Logged in user
+    // 2. Find the group user belongs
+    // 3. Set logged in user
     firebaseApp
       .auth()
       .signInWithEmailAndPassword(payload.email, payload.password)
@@ -102,7 +101,6 @@ export const actions = {
           email: result.user.email,
           name: result.user.displayName,
         }
-        console.log(authUser)
         return firebaseApp
           .database()
           .ref('groups')
@@ -145,7 +143,6 @@ export const actions = {
           email: user.email,
           name: user.displayName,
         }
-        console.log('authUser')
         firebaseApp
           .database()
           .ref('groups')
@@ -173,10 +170,10 @@ export const actions = {
   },
   updateProfile({ commit, getters }, payload) {
     // 1. Update user name with updateProfile
-    // 2. Update user email with update
+    // 2. Update user email with updateEmail
     // 3. Update the database
     // 4. Will divide the code into chunks
-    // -McDrpk2MFfHhXrliMZX -McDrqkljZ7iruZ20J0D
+    // -L8cCHJYQtgSs-fgaTHZ , -L8cCJUxYnR7OuCDAL6n
     commit('setBusy', true)
     commit('clearError')
     const userData = getters.user
@@ -187,10 +184,10 @@ export const actions = {
     const updateDb = () => {
       const updateObj = {}
       if (userData.role === 'admin') {
-        updateObj[`userGroups/-McDrpk2MFfHhXrliMZX/${user.uid}`] =
+        updateObj[`userGroups/-L8cCHJYQtgSs-fgaTHZ/${user.uid}`] =
           payload.fullname
       }
-      updateObj[`userGroups/-McDrqkljZ7iruZ20J0D/${user.uid}`] =
+      updateObj[`userGroups/-L8cCJUxYnR7OuCDAL6n/${user.uid}`] =
         payload.fullname
       updateObj[`users/${user.uid}/email`] = payload.email
       updateObj[`users/${user.uid}/fullname`] = payload.fullname
@@ -208,6 +205,21 @@ export const actions = {
           role: userData.role,
         }
         commit('setUser', userObj)
+        commit('setBusy', false)
+        commit('setJobDone', true)
+      })
+      .catch((error) => {
+        commit('setBusy', false)
+        commit('setError', error)
+      })
+  },
+  changePwd({ commit }, payload) {
+    commit('setBusy', true)
+    commit('clearError')
+    const user = firebaseApp.auth().currentUser
+    user
+      .updatePassword(payload.password)
+      .then(() => {
         commit('setBusy', false)
         commit('setJobDone', true)
       })

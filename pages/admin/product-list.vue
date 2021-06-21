@@ -30,29 +30,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>1</th>
-            <td></td>
-            <td><a href="#">Product 1</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr v-for="(product, index) in products" :key="product.key">
+            <th>{{ ++index }}</th>
+            <td><img :src="product.imageUrl" class="image is-48x48" /></td>
             <td>
-              <a href="#"
-                ><span class="icon has-text-danger"
-                  ><i class="fa fa-lg fa-times-circle"></i></span
-              ></a>
+              <a href="#">{{ product.name }}</a>
             </td>
-          </tr>
-          <tr>
-            <th>2</th>
-            <td></td>
-            <td><a href="#">Product 2</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ product.code }}</td>
+            <td>{{ product.brand }}</td>
+            <td class="has-text-centered">{{ product.stock }}</td>
+            <td class="has-text-centered">
+              {{ product.status === 1 ? 'Available' : 'Not Available' }}
+            </td>
             <td>
               <a href="#"
                 ><span class="icon has-text-danger"
@@ -67,8 +56,17 @@
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    products() {
+      return this.$store.getters['product/products']
+    },
+  },
+  created() {
+    const loadedProducts = this.$store.getters['product/products']
+    if (loadedProducts.length === 0) {
+      this.$store.dispatch('product/getProducts')
+    }
+  },
+}
 </script>
-
-<style lang="scss" scoped>
-</style>
