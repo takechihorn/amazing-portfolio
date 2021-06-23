@@ -10,3 +10,8 @@ Vue.filter('currency', (value) => {
   })
   return formatter.format(value)
 })
+
+Vue.filter('nl2br', (value) => {
+  if (!value) return ''
+  return value.replace(/\n/g, '<br>')
+})

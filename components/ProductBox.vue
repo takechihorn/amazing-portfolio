@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by3">
-        <nuxt-link to="/product"
+        <nuxt-link :to="{ path: productPath(product.name, product.key) }"
           ><img :src="product.imageUrl" alt="Image"
         /></nuxt-link>
       </figure>
@@ -24,7 +24,14 @@
 </template>
 
 <script>
+import { slugString } from '@/plugins/helpers'
 export default {
   props: ['product'],
+  methods: {
+    productPath(name, key) {
+      const slug = slugString(name)
+      return `/product/${slug}/${key}`
+    },
+  },
 }
 </script>
