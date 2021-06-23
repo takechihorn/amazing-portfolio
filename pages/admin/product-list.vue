@@ -34,7 +34,9 @@
             <th>{{ ++index }}</th>
             <td><img :src="product.imageUrl" class="image is-48x48" /></td>
             <td>
-              <a href="#">{{ product.name }}</a>
+              <a href="#" @click.prevent="editProduct(product)">{{
+                product.name
+              }}</a>
             </td>
             <td>{{ product.code }}</td>
             <td>{{ product.brand }}</td>
@@ -43,7 +45,7 @@
               {{ product.status === 1 ? 'Available' : 'Not Available' }}
             </td>
             <td>
-              <a href="#"
+              <a href="#" @click.prevent="removeProduct(product)"
                 ><span class="icon has-text-danger"
                   ><i class="fa fa-lg fa-times-circle"></i></span
               ></a>
@@ -67,6 +69,26 @@ export default {
     if (loadedProducts.length === 0) {
       this.$store.dispatch('product/getProducts')
     }
+    this.$store.commit('product/loadProduct', null)
+    this.$store.commit('product/clearProductCategories')
+  },
+  methods: {
+    removeProduct(product) {
+      this.$swal({
+        title: 'Delete the product?',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      }).then((ok) => {
+        if (ok) {
+          this.$store.dispatch('product/removeProduct', product)
+        }
+      })
+    },
+    editProduct(product) {
+      this.$store.commit('product/loadProduct', product)
+      this.$router.push('product-edit')
+    },
   },
 }
 </script>

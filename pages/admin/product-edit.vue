@@ -213,17 +213,33 @@ export default {
       image: null,
       imageName: '',
       imageUrl: 'http://placehold.it/800x600',
+      oldImageUrl: '',
     }
   },
   computed: {
     categories() {
       return this.$store.getters['product/categories']
     },
+    productCategories() {
+      return this.$store.getters['product/productCategories']
+    },
+  },
+  watch: {
+    productCategories(value) {
+      if (value) {
+        this.belongs = value
+      }
+    },
   },
   mounted() {
     const loadedCats = this.$store.getters['product/categories']
     if (loadedCats.length === 0) {
       this.$store.dispatch('product/getCategories')
+    }
+    const product = this.$store.getters['product/product']
+    if (product != null) {
+      this.populateForm(product)
+      this.$store.dispatch('product/productCategories', product.key)
     }
   },
   methods: {
@@ -241,7 +257,14 @@ export default {
             description: this.description,
             image: this.image,
           }
-          this.$store.dispatch('product/addProduct', productData)
+          if (!this.key) {
+            this.$store.dispatch('product/addProduct', productData)
+          } else {
+            productData.key = this.key
+            productData.imageUrl = this.imageUrl
+            productData.oldImageUrl = this.oldImageUrl
+            this.$store.dispatch('product/updateProduct', productData)
+          }
         }
       })
     },
@@ -255,8 +278,20 @@ export default {
       }
       reader.readAsDataURL(files[0])
     },
+    populateForm(product) {
+      this.key = product.key
+      this.name = product.name
+      this.code = product.code
+      this.brand = product.brand
+      this.price = product.price
+      this.stock = product.stock
+      this.status = product.status
+      this.description = product.description
+      this.imageUrl = product.imageUrl
+      this.oldImageUrl = product.oldImageUrl
+    },
     jobsDone() {
-      console.log('DONE')
+      this.$router.push('product-list')
     },
     goBack() {
       window.history.go(-1)
