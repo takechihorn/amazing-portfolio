@@ -245,13 +245,6 @@ export const actions = {
         }
       })
       .then(() => {
-        if (oldImageUrl) {
-          const refUrl = oldImageUrl.split('?')[0]
-          const httpsRef = firebaseApp.storage().refFromURL(refUrl)
-          return httpsRef.delete()
-        }
-      })
-      .then(() => {
         // Prepare batch removal of product-categories attachments
         return firebaseApp
           .database()

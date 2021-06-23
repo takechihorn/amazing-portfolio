@@ -288,7 +288,7 @@ export default {
       this.status = product.status
       this.description = product.description
       this.imageUrl = product.imageUrl
-      this.oldImageUrl = product.oldImageUrl
+      this.oldImageUrl = product.imageUrl
     },
     jobsDone() {
       this.$router.push('product-list')
