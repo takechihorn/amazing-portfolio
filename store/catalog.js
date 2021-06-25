@@ -18,6 +18,9 @@ export const mutations = {
   updateCart(state, payload) {
     state.cart.items.push(payload)
   },
+  reloadCart(state, payload) {
+    state.cart.items = payload.items
+  },
   emptyCart(state) {
     state.cart.items = []
   },

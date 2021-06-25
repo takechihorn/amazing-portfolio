@@ -8524,6 +8524,11 @@
   dependencies:
     "ci-info" "^3.0.0"
 
+"store@^2.0.12":
+  "integrity" "sha1-jFNOKguDH3K3X8XxEZhXxE711ZM="
+  "resolved" "https://registry.npmjs.org/store/-/store-2.0.12.tgz"
+  "version" "2.0.12"
+
 "stream-browserify@^2.0.1":
   "integrity" "sha512-nX6hmklHs/gr2FuxYDltq8fJA1GDlxKQCz8O/IM4atRqBH8OORmBNgfvW5gG10GT/qQ9u0CzIvr2X5Pkt6ntqg=="
   "resolved" "https://registry.npmjs.org/stream-browserify/-/stream-browserify-2.0.2.tgz"
@@ -9360,12 +9365,19 @@
   "resolved" "https://registry.npmjs.org/vue-toasted/-/vue-toasted-1.1.28.tgz"
   "version" "1.1.28"
 
-"vue@^2.0.0", "vue@^2.3.0", "vue@^2.6.12":
+"vue-warehouse@^1.0.1":
+  "integrity" "sha512-vq3Q3U5+c2BxZMmTVyaKJWsH24X10QqOdN5jFHuEzjuv0+r0M0dQICXeO5rghgQTDI/+2IvBdeQ+LLhD3IpRbA=="
+  "resolved" "https://registry.npmjs.org/vue-warehouse/-/vue-warehouse-1.0.1.tgz"
+  "version" "1.0.1"
+  optionalDependencies:
+    "vuex" "^3.0.0"
+
+"vue@^2.0.0", "vue@^2.3.0", "vue@^2.5.0", "vue@^2.6.12":
   "integrity" "sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"
 
-"vuex@^3.6.2":
+"vuex@^3.0.0", "vuex@^3.6.2":
   "integrity" "sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw=="
   "resolved" "https://registry.npmjs.org/vuex/-/vuex-3.6.2.tgz"
   "version" "3.6.2"

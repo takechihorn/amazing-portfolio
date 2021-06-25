@@ -55,6 +55,17 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
+    [
+      'vue-warehouse/nuxt',
+      {
+        vuex: true,
+        plugins: ['store/plugins/expire', 'store/plugins/defaults'],
+        storages: [
+          'store/storages/localStorage',
+          'store/storages/cookieStorage',
+        ],
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

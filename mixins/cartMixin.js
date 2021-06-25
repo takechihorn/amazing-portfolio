@@ -27,13 +27,16 @@ export default {
           quantity: productQuantity,
         }
         this.$store.commit('catalog/updateCart', item)
+        this.updateLocalStorage()
       } else if (!quantity) {
         this.$store.commit('catalog/increaseQuantity', index)
+        this.updateLocalStorage()
       } else {
         this.$store.commit('catalog/updateQuantity', {
           index,
           productQuantity,
         })
+        this.updateLocalStorage()
       }
 
       this.$toast.show('Shopping cart updated', {
@@ -44,9 +47,14 @@ export default {
     },
     increaseQuantity(i) {
       this.$store.commit('catalog/increaseQuantity', i)
+      this.updateLocalStorage()
     },
     decreaseQuantity(i) {
       this.$store.commit('catalog/decreaseQuantity', i)
+      this.updateLocalStorage()
+    },
+    updateLocalStorage() {
+      this.$warehouse.set('cart', this.cart)
     },
   },
   computed: {

@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     jobsDone() {
+      this.$warehouse.remove('cart')
       this.orderSuceess = true
     },
   },
