@@ -33,7 +33,7 @@
                   :class="{ 'is-danger': errors.has('password') }"
                   class="input"
                   type="password"
-                />
+                />
                 <p v-show="errors.has('password')" class="help is-danger">
                   {{ errors.first('password') }}
                 </p>
@@ -95,7 +95,13 @@ export default {
     },
     jobsDone() {
       this.removeErrors()
-      this.$router.replace('/')
+      let nextRoute = '/'
+      const forwardRoute = this.$store.getters.forwardRoute
+      if (forwardRoute !== null) {
+        nextRoute = forwardRoute
+        this.$store.commit('setForwardRoute', null)
+      }
+      this.$router.replace(nextRoute)
     },
   },
 }

@@ -45,15 +45,19 @@
           <div class="field is-grouped is-grouped-multiline">
             <p class="control">
               <input
+                ref="quantity"
                 class="input has-text-centered"
                 style="width: 50px"
-                type="text"
-                name=""
+                type="number"
                 value="1"
               />
             </p>
             <p class="control">
-              <a class="button is-primary">Add to cart</a>
+              <a
+                class="button is-primary"
+                @click.prevent="addToCart(product, $refs.quantity.value)"
+                >Add to cart</a
+              >
             </p>
           </div>
         </div>
@@ -71,7 +75,9 @@
 
 <script>
 import { firebaseApp } from '@/plugins/firebase'
+import cartMixin from '@/mixins/cartMixin'
 export default {
+  mixins: [cartMixin],
   // search engine friendly
   asyncData({ params }) {
     return firebaseApp

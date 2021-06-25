@@ -65,7 +65,12 @@
                     <span class="icon is-small">
                       <i class="fa fa-shopping-cart"></i>
                     </span>
-                    <span>&bullet; 0 item ($0.00)</span>
+                    <span
+                      >&bullet; {{ cart.items.length }}
+                      {{ cart.items.length > 1 ? 'items' : 'item' }} ({{
+                        cartTotal | currency
+                      }})</span
+                    >
                   </nuxt-link>
                 </p>
               </div>
@@ -112,7 +117,9 @@
 </template>
 
 <script>
+import cartMixin from '@/mixins/cartMixin'
 export default {
+  mixins: [cartMixin],
   data() {
     return {
       username: 'Guest',

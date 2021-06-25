@@ -16,7 +16,12 @@
     <footer class="card-footer">
       <p class="card-footer-item">
         <span>
-          <a href="#" class="button is-primary">Add to Cart</a>
+          <a
+            href="#"
+            class="button is-primary"
+            @click.prevent="addToCart(product)"
+            >Add to Cart</a
+          >
         </span>
       </p>
     </footer>
@@ -25,7 +30,9 @@
 
 <script>
 import { slugString } from '@/plugins/helpers'
+import cartMixin from '~/mixins/cartMixin'
 export default {
+  mixins: [cartMixin],
   props: ['product'],
   methods: {
     productPath(name, key) {

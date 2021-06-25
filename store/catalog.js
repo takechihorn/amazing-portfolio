@@ -3,6 +3,9 @@ import { firebaseApp } from '@/plugins/firebase'
 export const state = () => ({
   products: [],
   categories: [],
+  cart: {
+    items: [],
+  },
 })
 
 export const mutations = {
@@ -11,6 +14,25 @@ export const mutations = {
   },
   loadCategories(state, payload) {
     state.categories = payload
+  },
+  updateCart(state, payload) {
+    state.cart.items.push(payload)
+  },
+  emptyCart(state) {
+    state.cart.items = []
+  },
+  updateQuantity(state, payload) {
+    state.cart.items[payload.index].quantity = payload.productQuantity
+  },
+  increaseQuantity(state, payload) {
+    state.cart.items[payload].quantity++
+  },
+  decreaseQuantity(state, payload) {
+    state.cart.items[payload].quantity--
+    // マイナスを押していって、0になった場合カートのストアから指定した商品を削除
+    if (state.cart.items[payload].quantity === 0) {
+      state.cart.items.splice(payload, 1)
+    }
   },
 }
 
@@ -97,6 +119,35 @@ export const actions = {
         console.log(error)
       })
   },
+  postOrder({ commit }, payload) {
+    // orders/orderKey/userKey/productKey/productDetail
+    const orderKey = firebaseApp.database().ref('orders').push().key
+    const items = payload.items
+    const user = firebaseApp.auth().currentUser
+    const orderItems = {}
+
+    items.forEach((item) => {
+      orderItems[`orders/${orderKey}/${user.uid}/${item.product.key}`] = {
+        code: item.product.code,
+        product: item.product.name,
+        price: item.product.price,
+        quantity: item.quantity,
+        imageUrl: item.product.imageUrl,
+        createdAt: new Date().toISOString(),
+      }
+    })
+    firebaseApp
+      .database()
+      .ref()
+      .update(orderItems)
+      .then(() => {
+        commit('emptyCart')
+        commit('setJobDone', true, { root: true })
+      })
+      .catch((error) => {
+        commit('setError', error, { root: true })
+      })
+  },
 }
 
 export const getters = {
@@ -105,5 +156,8 @@ export const getters = {
   },
   categories(state) {
     return state.categories
+  },
+  cart(state) {
+    return state.cart
   },
 }

@@ -5,6 +5,7 @@ export const state = () => ({
   error: null,
   busy: false,
   jobDone: false,
+  forwardRoute: null,
 })
 
 export const mutations = {
@@ -22,6 +23,9 @@ export const mutations = {
   },
   setJobDone(state, payload) {
     state.jobDone = payload
+  },
+  setForwardRoute(state, payload) {
+    state.forwardRoute = payload
   },
 }
 
@@ -249,5 +253,8 @@ export const getters = {
   },
   jobDone(state) {
     return state.jobDone
+  },
+  forwardRoute(state) {
+    return state.forwardRoute
   },
 }
