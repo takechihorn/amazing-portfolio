@@ -11,11 +11,11 @@
               <label class="label">New password</label>
               <div class="control">
                 <input
+                  v-model="password"
+                  v-validate="'required|min:6'"
                   class="input"
                   type="password"
                   name="password"
-                  v-model="password"
-                  v-validate="'required|min:6'"
                   :class="{ 'is-danger': errors.has('password') }"
                 />
                 <p v-show="errors.has('password')" class="help is-danger">
@@ -27,11 +27,11 @@
               <label class="label">Confirm new password</label>
               <div class="control">
                 <input
+                  v-model="password_confirm"
+                  v-validate="'required|min:6|confirmed:password'"
                   class="input"
                   type="password"
                   name="password_confirm"
-                  v-model="password_confirm"
-                  v-validate="'required|min:6|confirmed:password'"
                   :class="{ 'is-danger': errors.has('password_confirm') }"
                 />
                 <p

@@ -18,8 +18,8 @@
           <div class="navbar-start">
             <nuxt-link class="navbar-item" to="/"> Home </nuxt-link>
             <div
-              class="navbar-item has-dropdown is-hoverable"
               v-if="userIsAdmin"
+              class="navbar-item has-dropdown is-hoverable"
             >
               <a class="navbar-link is-active" href="#"> Admin </a>
               <div class="navbar-dropdown">
@@ -43,8 +43,8 @@
 
           <div class="navbar-start">
             <div
-              class="navbar-item has-dropdown is-hoverable"
               v-if="userLoggedIn"
+              class="navbar-item has-dropdown is-hoverable"
             >
               <a class="navbar-link is-active"> Hi, {{ username }} </a>
               <div class="navbar-dropdowm">
@@ -57,7 +57,7 @@
                 <a class="navbar-item" @click="logOut"> Log Out </a>
               </div>
             </div>
-            <div class="navbar-item" v-else>Hi {{ username }}</div>
+            <div v-else class="navbar-item">Hi {{ username }}</div>
             <div class="navbar-item">
               <div class="field is-grouped is-grouped-multiline">
                 <p class="control">
@@ -76,7 +76,7 @@
               </div>
             </div>
 
-            <p class="control" v-if="!userLoggedIn">
+            <p v-if="!userLoggedIn" class="control">
               <nuxt-link class="button is-primary" to="/login">
                 <span class="icon is-small">
                   <i class="fa fa-unlock-alt"></i>
@@ -85,7 +85,7 @@
               </nuxt-link>
             </p>
 
-            <p class="control" v-if="!userLoggedIn">
+            <p v-if="!userLoggedIn" class="control">
               <nuxt-link class="button is-info" to="/signup">
                 <span class="icon is-small">
                   <i class="fa fa-user-o"></i>

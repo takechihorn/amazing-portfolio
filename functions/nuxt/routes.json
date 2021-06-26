@@ -1,0 +1,100 @@
+[
+  {
+    "name": "cart",
+    "path": "/cart",
+    "component": "/Users/takeru/nshop/pages/cart.vue",
+    "chunkName": "pages/cart",
+    "_name": "_72352113"
+  },
+  {
+    "name": "checkout",
+    "path": "/checkout",
+    "component": "/Users/takeru/nshop/pages/checkout.vue",
+    "chunkName": "pages/checkout",
+    "_name": "_43094ab9"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "/Users/takeru/nshop/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_63e2ad86"
+  },
+  {
+    "name": "signup",
+    "path": "/signup",
+    "component": "/Users/takeru/nshop/pages/signup.vue",
+    "chunkName": "pages/signup",
+    "_name": "_64ccf04b"
+  },
+  {
+    "name": "user-profile",
+    "path": "/user-profile",
+    "component": "/Users/takeru/nshop/pages/user-profile.vue",
+    "chunkName": "pages/user-profile",
+    "_name": "_55d7dd1a"
+  },
+  {
+    "name": "user-pwd-change",
+    "path": "/user-pwd-change",
+    "component": "/Users/takeru/nshop/pages/user-pwd-change.vue",
+    "chunkName": "pages/user-pwd-change",
+    "_name": "_4cfa66df"
+  },
+  {
+    "name": "admin-administrators",
+    "path": "/admin/administrators",
+    "component": "/Users/takeru/nshop/pages/admin/administrators.vue",
+    "chunkName": "pages/admin/administrators",
+    "_name": "_a60a4a0e"
+  },
+  {
+    "name": "admin-customers",
+    "path": "/admin/customers",
+    "component": "/Users/takeru/nshop/pages/admin/customers.vue",
+    "chunkName": "pages/admin/customers",
+    "_name": "_8cea191c"
+  },
+  {
+    "name": "admin-product-categories",
+    "path": "/admin/product-categories",
+    "component": "/Users/takeru/nshop/pages/admin/product-categories.vue",
+    "chunkName": "pages/admin/product-categories",
+    "_name": "_6d152ded"
+  },
+  {
+    "name": "admin-product-edit",
+    "path": "/admin/product-edit",
+    "component": "/Users/takeru/nshop/pages/admin/product-edit.vue",
+    "chunkName": "pages/admin/product-edit",
+    "_name": "_39de64ca"
+  },
+  {
+    "name": "admin-product-list",
+    "path": "/admin/product-list",
+    "component": "/Users/takeru/nshop/pages/admin/product-list.vue",
+    "chunkName": "pages/admin/product-list",
+    "_name": "_586eb3a2"
+  },
+  {
+    "name": "admin-user-groups",
+    "path": "/admin/user-groups",
+    "component": "/Users/takeru/nshop/pages/admin/user-groups.vue",
+    "chunkName": "pages/admin/user-groups",
+    "_name": "_03098f73"
+  },
+  {
+    "name": "product-slug-id",
+    "path": "/product/:slug?/:id?",
+    "component": "/Users/takeru/nshop/pages/product/_slug/_id.vue",
+    "chunkName": "pages/product/_slug/_id",
+    "_name": "_5df77932"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/takeru/nshop/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_cb89eb22"
+  }
+]

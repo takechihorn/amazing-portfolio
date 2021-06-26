@@ -11,11 +11,11 @@
               <label class="label">Name</label>
               <div class="control">
                 <input
+                  v-model="fullname"
+                  v-validate="'required|min:4'"
                   class="input"
                   type="text"
                   name="fullname"
-                  v-model="fullname"
-                  v-validate="'required|min:4'"
                   :class="{ 'is-danger': errors.has('fullname') }"
                 />
                 <p v-show="errors.has('fullname')" class="help is-danger">
@@ -27,11 +27,11 @@
               <label class="label">Email</label>
               <div class="control">
                 <input
+                  v-model="email"
+                  v-validate="'required|email'"
                   class="input"
                   type="email"
                   name="email"
-                  v-model="email"
-                  v-validate="'required|email'"
                   :class="{ 'is-danger': errors.has('email') }"
                 />
                 <p v-show="errors.has('email')" class="help is-danger">
@@ -43,11 +43,11 @@
               <label class="label">Password</label>
               <div class="control">
                 <input
+                  v-model="password"
+                  v-validate="'required|min:6'"
                   class="input"
                   type="password"
                   name="password"
-                  v-model="password"
-                  v-validate="'required|min:6'"
                   :class="{ 'is-danger': errors.has('password') }"
                 />
                 <p v-show="errors.has('password')" class="help is-danger">

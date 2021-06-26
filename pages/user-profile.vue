@@ -11,11 +11,11 @@
               <label class="label">Name</label>
               <div class="control">
                 <input
+                  v-model="fullname"
+                  v-validate="'required|min:4'"
                   class="input"
                   type="text"
                   name="fullname"
-                  v-model="fullname"
-                  v-validate="'required|min:4'"
                   :class="{ 'is-danger': errors.has('fullname') }"
                 />
                 <p v-show="errors.has('fullname')" class="help is-danger">
@@ -27,11 +27,11 @@
               <label class="label">Email</label>
               <div class="control">
                 <input
+                  v-model="email"
+                  v-validate="'required|email'"
                   class="input"
                   type="email"
                   name="email"
-                  v-model="email"
-                  v-validate="'required|email'"
                   :class="{ 'is-danger': errors.has('email') }"
                 />
                 <p v-show="errors.has('email')" class="help is-danger">
@@ -76,6 +76,20 @@ export default {
       fullname: '',
     }
   },
+  // If data gone after page reload
+  computed: {
+    userData() {
+      return this.$store.getters.user
+    },
+  },
+  watch: {
+    userData(value) {
+      if (value) {
+        this.email = value.email
+        this.fullname = value.name
+      }
+    },
+  },
   mounted() {
     this.$store.commit('clearError')
     const user = this.$store.getters.user
@@ -100,20 +114,6 @@ export default {
         title: 'Profile updated successfuly',
         icon: 'success',
       })
-    },
-  },
-  // If data gone after page reload
-  computed: {
-    userData() {
-      return this.$store.getters.user
-    },
-  },
-  watch: {
-    userData(value) {
-      if (value) {
-        this.email = value.email
-        this.fullname = value.name
-      }
     },
   },
 }

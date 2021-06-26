@@ -41,13 +41,13 @@ export const actions = {
     firebaseApp
       .auth()
       .createUserWithEmailAndPassword(payload.email, payload.password)
-      .then((result) => {
-        newUser = result.user
-        return result.user
+      .then((user) => {
+        newUser = user
+        return user
           .updateProfile({ displayName: payload.fullname })
           .then(() => {
             const currentUser = {
-              id: result.user.uid,
+              id: user.uid,
               email: payload.email,
               name: payload.fullname,
               role: 'consumer',
@@ -99,11 +99,11 @@ export const actions = {
     firebaseApp
       .auth()
       .signInWithEmailAndPassword(payload.email, payload.password)
-      .then((result) => {
+      .then((user) => {
         const authUser = {
-          id: result.user.uid,
-          email: result.user.email,
-          name: result.user.displayName,
+          id: user.uid,
+          email: user.email,
+          name: user.displayName,
         }
         return firebaseApp
           .database()

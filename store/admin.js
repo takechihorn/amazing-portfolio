@@ -95,9 +95,9 @@ export const actions = {
     adminApp
       .auth()
       .createUserWithEmailAndPassword(payload.email, payload.password)
-      .then((result) => {
-        result.user.updateProfile({ displayName: payload.fullname })
-        newAdmin = result.user
+      .then((user) => {
+        user.updateProfile({ displayName: payload.fullname })
+        newAdmin = user
         // Add extra user data into database
         const userProfile = {
           email: payload.email,

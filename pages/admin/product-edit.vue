@@ -45,8 +45,8 @@
               <label class="label">Product Name*</label>
               <div class="control">
                 <input
-                  v-validate="'required|min:4'"
                   v-model="name"
+                  v-validate="'required|min:4'"
                   class="input"
                   type="text"
                   name="name"
@@ -77,11 +77,11 @@
               <label class="label">Brand*</label>
               <div class="control">
                 <input
+                  v-model="brand"
+                  v-validate="'required|min:2'"
                   class="input"
                   type="text"
                   name="brand"
-                  v-model="brand"
-                  v-validate="'required|min:2'"
                   :class="{ 'is-danger': errors.has('brand') }"
                 />
                 <p v-show="errors.has('brand')" class="help is-danger">
@@ -93,11 +93,11 @@
               <label class="label">Price*</label>
               <div class="control">
                 <input
+                  v-model="price"
+                  v-validate="'required|decimal:2'"
                   class="input"
                   type="text"
                   name="price"
-                  v-model="price"
-                  v-validate="'required|decimal:2'"
                   :class="{ 'is-danger': errors.has('price') }"
                 />
                 <p v-show="errors.has('price')" class="help is-danger">
@@ -109,11 +109,11 @@
               <label class="label">Stock*</label>
               <div class="control">
                 <input
+                  v-model="stock"
+                  v-validate="'required|numeric'"
                   class="input"
                   type="number"
                   name="stock"
-                  v-model="stock"
-                  v-validate="'required|numeric'"
                   :class="{ 'is-danger': errors.has('stock') }"
                 />
                 <p v-show="errors.has('stock')" class="help is-danger">

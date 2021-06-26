@@ -1,0 +1,11 @@
+{
+  "ErrorBar": {
+    "description": "Auto imported from components/ErrorBar.vue"
+  },
+  "Logo": {
+    "description": "Auto imported from components/Logo.vue"
+  },
+  "ProductBox": {
+    "description": "Auto imported from components/ProductBox.vue"
+  }
+}

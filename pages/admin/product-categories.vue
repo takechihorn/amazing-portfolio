@@ -8,8 +8,8 @@
         <div class="column is-one-third">
           <form @submit.prevent="onSubmit">
             <div class="field">
-              <label class="label" v-if="!category">New category</label>
-              <label class="label" v-else>Update category</label>
+              <label v-if="!category" class="label">New category</label>
+              <label v-else class="label">Update category</label>
               <div class="control">
                 <input
                   v-model="name"
@@ -37,11 +37,11 @@
                   {{ !category ? 'Create' : 'Update' }}
                 </button>
                 <button
+                  v-if="category"
                   style="margin-left: 10px"
                   type="button"
                   class="button"
                   @click.prevent="cancelUpdate()"
-                  v-if="category"
                 >
                   Cancel
                 </button>

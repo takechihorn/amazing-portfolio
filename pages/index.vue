@@ -1,16 +1,5 @@
 <template>
   <div>
-    <!-- <section class="section left-right-pad is-fluid">
-      <div class="hero is-medium is-primary is-bold has-text-centered">
-        <div class="hero-body">
-          <h1 class="title">Warm Welcome to the Nshop!</h1>
-          <h2 class="subtitle">Toys and Gifts for the Geeky Ones!</h2>
-          <a class="button is-warning" @click="increment(10)">Increment +</a>
-          <a class="button is-danger">{{ counter }}</a>
-        </div>
-      </div>
-    </section> -->
-
     <section class="section">
       <div class="box">
         <nav class="level">
@@ -18,8 +7,8 @@
             <div class="field is-grouped is-grouped-multiline">
               <p class="control">
                 <input
-                  class="input"
                   v-model="keyword"
+                  class="input"
                   type="text"
                   placeholder="Keyword"
                 />
@@ -43,14 +32,7 @@
                   Search
                 </a>
               </p>
-              <p class="control">
-                <!-- <a
-                  class="button is-warning"
-                  @click="$store.dispatch('fireTest')"
-                >
-                  Test Firebase</a
-                > -->
-              </p>
+              <p class="control"></p>
             </div>
           </div>
 

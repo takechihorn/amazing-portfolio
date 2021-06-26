@@ -1,0 +1,39 @@
+{
+  "rules": {
+    "groups":{
+    ".read": "auth != null", 
+    ".write": "root.child('userGroups').child('-McDrpk2MFfHhXrliMZX').child(auth.uid).exists()",
+    ".indexOn":["name"],
+  },
+  "userGroups":{
+    ".read" : "auth != null",
+    ".write" : "auth != null"
+  },
+  "users":{
+    ".read" : "auth != null",
+    ".write" : "auth != null"
+  },
+  "categories": {
+    ".read": true,
+    ".write": "root.child('userGroups').child('-McDrpk2MFfHhXrliMZX').child(auth.uid).exists()"
+  },
+  "products":{
+    ".read":true,
+    ".write": "root.child('userGroups').child('-McDrpk2MFfHhXrliMZX').child(auth.uid).exists()",
+    "$uid":{
+      ".indexOn":["name"]
+    }
+  },
+    "productCategories":{
+      ".read":true,
+      ".write":"root.child('userGroups').child('-McDrpk2MFfHhXrliMZX').child(auth.uid).exists()",
+      "$uid":{
+        ".indexOn":["name"]
+      }
+    },
+      "orders":{
+        ".read":"auth != null",
+        ".write": "auth != null"
+      }
+ }
+}
