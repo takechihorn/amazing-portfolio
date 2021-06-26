@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env HOST=localhost PORT=3040 nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "cross-env HOST=localhost PORT=3030 NODE_ENV=production node ./server/server.js",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore . --fix"
@@ -16,6 +16,7 @@
     "@nuxtjs/toast": "^3.0.1",
     "core-js": "^3.9.1",
     "cross-env": "^7.0.3",
+    "express": "^4.16.4",
     "firebase": "^4.12.0",
     "nuxt": "^2.15.3",
     "slugify": "^1.3.1",
