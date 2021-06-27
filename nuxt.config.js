@@ -9,7 +9,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Nshop - A Nuxt Project',
+        content: 'Amazing - A Nuxt Project',
       },
     ],
     link: [

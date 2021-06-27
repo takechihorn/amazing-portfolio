@@ -89,7 +89,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"Nshop","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nshop - A Nuxt Project"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"\u002Fbulma.css"},{"rel":"stylesheet","href":"\u002Fstyles.css"},{"rel":"stylesheet","href":"\u002Ffont-awesome.min.css"}],"script":[{"src":"\u002Futil.js","type":"text\u002Fjavascript"}],"style":[]},
+    head: {"title":"amazing","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nshop - A Nuxt Project"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"\u002Fbulma.css"},{"rel":"stylesheet","href":"\u002Fstyles.css"},{"rel":"stylesheet","href":"\u002Ffont-awesome.min.css"}],"script":[{"src":"\u002Futil.js","type":"text\u002Fjavascript"}],"style":[]},
 
     store,
     router,
