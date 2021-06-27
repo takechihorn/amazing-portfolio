@@ -34,6 +34,7 @@
                   :class="{ 'is-loading': busy }"
                   :disabled="busy"
                 >
+                  <!-- groupが選択されてなかったらCreate -->
                   {{ !group ? 'Create' : 'Update' }}
                 </button>
                 <button

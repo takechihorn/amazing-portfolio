@@ -104,8 +104,8 @@
       <div class="container">
         <div class="content has-text-centered">
           <p>
-            &copy; Nshop<br />
-            Nuxt & Vue Jump-start.
+            &copy; Amazing<br />
+            created of Nuxt & Vue
           </p>
           <p>
             <img src="/nshop-icon.png" />
