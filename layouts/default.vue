@@ -4,7 +4,7 @@
       <nav class="navbar section">
         <div class="navbar-brand">
           <nuxt-link class="navbar-item" to="/">
-            <img src="/nshop-logo.png" width="120" height="28" />
+            <img src="@/assets/amazing.png" width="120" height="28" />
           </nuxt-link>
 
           <div class="navbar-burger burger" data-target="top-menu">
@@ -77,7 +77,7 @@
             </div>
 
             <p v-if="!userLoggedIn" class="control">
-              <nuxt-link class="button is-primary" to="/login">
+              <nuxt-link class="button is-warning" to="/login">
                 <span class="icon is-small">
                   <i class="fa fa-unlock-alt"></i>
                 </span>

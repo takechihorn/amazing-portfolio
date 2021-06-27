@@ -28,7 +28,7 @@
                 </span>
               </p>
               <p class="control">
-                <a class="button is-primary" @click.prevent="search">
+                <a class="button is-warning" @click.prevent="search">
                   Search
                 </a>
               </p>

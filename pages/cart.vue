@@ -27,7 +27,7 @@
               <td class="has-text-centered">
                 {{ item.quantity }}
                 <a
-                  class="button is-primary is-outlined is-small"
+                  class="button is-warning is-outlined is-small"
                   @click="increaseQuantity(index)"
                 >
                   <span class="icon is-small">
@@ -71,7 +71,7 @@
             >
           </div>
           <div class="control">
-            <a class="button is-primary" @click="checkout">Checkout</a>
+            <a class="button is-warning" @click="checkout">Checkout</a>
           </div>
         </div>
       </div>

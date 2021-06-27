@@ -9,7 +9,7 @@
         </div>
         <div class="level-right">
           <div class="level-item">
-            <nuxt-link class="button is-primary" to="/admin/product-edit"
+            <nuxt-link class="button is-warning" to="/admin/product-edit"
               >Add</nuxt-link
             >
           </div>

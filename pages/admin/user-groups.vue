@@ -24,13 +24,13 @@
               </div>
             </div>
 
-            <error-bar :error="error"></error-bar>
+            <ErrorBar :error="error" />
 
             <div class="field">
               <div class="control">
                 <button
                   type="submit"
-                  class="button is-primary"
+                  class="button is-warning"
                   :class="{ 'is-loading': busy }"
                   :disabled="busy"
                 >
@@ -85,7 +85,6 @@
 
 <script>
 import ErrorBar from '@/components/ErrorBar.vue'
-
 export default {
   components: {
     ErrorBar,
@@ -160,6 +159,7 @@ export default {
         }
       })
     },
+    // 入力が終わったのちに値を全部クリアにする
     jobsDone() {
       this.group = null
       this.name = ''

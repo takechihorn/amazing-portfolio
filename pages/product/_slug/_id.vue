@@ -54,7 +54,7 @@
             </p>
             <p class="control">
               <a
-                class="button is-primary"
+                class="button is-warning"
                 @click.prevent="addToCart(product, $refs.quantity.value)"
                 >Add to cart</a
               >

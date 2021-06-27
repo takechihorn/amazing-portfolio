@@ -1,6 +1,7 @@
 import { firebaseApp, adminApp } from '@/plugins/firebase'
 
 export const state = () => ({
+  // groupsにはgroup名、adminにはadminユーザーがそれぞれ入っている
   groups: [],
   admins: [],
 })

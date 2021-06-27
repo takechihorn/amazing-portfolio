@@ -48,7 +48,7 @@
             <div class="field">
               <div class="control">
                 <button
-                  class="button is-primary"
+                  class="button is-warning"
                   :class="{ 'is-loading': busy }"
                   :disabled="busy"
                 >

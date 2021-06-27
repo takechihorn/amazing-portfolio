@@ -18,7 +18,7 @@
         <span>
           <a
             href="#"
-            class="button is-primary"
+            class="button is-warning"
             @click.prevent="addToCart(product)"
             >Add to Cart</a
           >
